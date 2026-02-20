@@ -1,0 +1,106 @@
+/* Estilos personalizados consolidados para o Mini ERP */
+
+:root{ --primary:#5e35b1; --bg:#f8f9fa; --muted:#6c757d }
+/* Paleta adicional */
+:root{ --yellow:#ffc107; --orange:#ff7a00; --lilac:#6f42c1 }
+
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    padding:0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    background-color: var(--bg);
+    color:#222;
+}
+
+/* Layout centralizado e largura máxima para aparência profissional */
+body{ display:flex; flex-direction:column; align-items:center; }
+.container{ width:100%; max-width:1200px; padding-left:16px; padding-right:16px }
+
+main.main{ width:100%; }
+
+/* Navbar */
+.navbar{ background-color: var(--primary) !important }
+.navbar-brand{ color:var(--primary) !important; font-weight:700 }
+
+/* Cards */
+.card{ border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.06); margin-bottom:1.25rem; background:#fff }
+.card h3{ font-size:14px; color:#666 }
+.card p{ font-size:1.25rem; font-weight:700 }
+
+/* Table / sections */
+.table-section{ background:rgb(253, 250, 250); padding:20px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.04) }
+table{ width:100%; border-collapse:collapse; margin-top:15px }
+/* Neutralizar cabeçalho/table cores antigas e garantir legibilidade */
+thead{ background:transparent; color:#000 }
+th, td{ padding:12px; text-align:left; color:#000 }
+tbody tr:nth-child(even){ background: #fafafa }
+
+/* Status */
+.status{ padding:5px 10px; border-radius:20px; font-size:12px; color:#f60b0b }
+.pago{ background:#28a745 }
+
+
+/* Ajuste: badges com fundo branco, borda colorida e texto colorido para melhor contraste */
+.status{ background:#fff; color:inherit; border:1px solid transparent }
+.pago{ background:#fff; color:#28a745; border-color:#28a745 }
+.pendente{ background:#fff; color:var(--orange); border-color:var(--orange) }
+
+/* Lilás (var --primary) estilo */
+.lilas{ background:#f7a1ee; color:var(--primary); border-color:var(--primary) }
+
+/* Footer */
+footer{ margin-top:40px; padding:20px; background-color:var(--primary); color:#fff; text-align:center; border-radius:8px; width:100% }
+
+/* Footer deve ter texto branco independentemente do override global */
+footer, footer * { color:#fff !important }
+
+/* Badge cupom */
+.badge-cupom{ font-size:0.9rem; background-color:#e665fd; color:var(--lilac); padding:5px 10px; border-radius:8px; border:1px solid var(--lilac) }
+
+/* Cart */
+.cart-items .list-group-item{ display:flex; justify-content:space-between }
+.order-summary .order-details p{ margin:0 }
+
+/* Utilities */
+.text-secondary{ color:var(--muted) !important }
+
+@media (max-width:768px){ .navbar-brand{ font-size:1rem } }
+
+/* Produtos - tabela com cara profissional */
+.products-table{ background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.05); border:1px solid #eef0f2 }
+.products-table thead th{ background:transparent; color:var(--muted); font-weight:600; border-bottom:1px solid #e9ecef }
+.products-table tbody tr{ transition:background .12s ease-in-out }
+.products-table tbody tr:hover{ background:rgba(95,39,205,0.03) }
+.products-table td, .products-table th{ vertical-align:middle }
+.product-img{ width:56px; height:56px; object-fit:cover; border-radius:8px; border:1px solid #eee }
+.action-buttons .btn{ margin-left:6px }
+.price-cell{ font-weight:700; color:#111 }
+.stock-low{ color:#dc3545; font-weight:600 }
+.stock-ok{ color:#198754; font-weight:600 }
+
+/* Botões com estilo consistente */
+.btn-outline-primary{ border-color:var(--primary); color:var(--primary) }
+.btn-outline-primary:hover{ background:var(--primary); color:#fff }
+.btn-outline-danger{ border-color:#dc3545; color:#dc3545 }
+.btn-outline-danger:hover{ background:#dc3545; color:#fff }
+
+/* Espaçamento geral e tipografia */
+h1,h2,h3,h4,h5{ color:#000 }
+p, li, a, span, label, input, button{ color:#000 }
+
+/* Responsividade: empilha colunas de ações em telas pequenas */
+@media (max-width:575px){
+    .products-table thead{ display:none }
+    .products-table tbody td{ display:block; width:100% }
+    .products-table tbody tr{ margin-bottom:12px; display:block; border-bottom:1px solid #f1f1f1 }
+    .products-table tbody td:before{ content:attr(data-label); float:left; font-weight:600; color:var(--muted) }
+}
+
+/* Forçar todas as cores de texto para preto conforme solicitado */
+body, body * {
+    color: #000 !important;
+}

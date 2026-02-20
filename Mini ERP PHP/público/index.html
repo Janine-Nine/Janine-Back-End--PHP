@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mini ERP para gerenciamento de produtos e pedidos">
+    <title>Mini ERP - Montink Dashboard</title>
+    
+    <!-- Bootstrap CSS (local) -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados consolidados -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Montink ERP</a>
+        </div>
+    </nav>
+
+    <!-- Header com menu de navegação -->
+    <header class="container mt-4">
+        <h1 class="h2">Bem-vindo ao Mini ERP!</h1>
+        <p class="lead">Gerencie produtos, pedidos, cupons e estoque de forma simples e eficiente.</p>
+
+        <nav class="list-group mb-4">
+            <a href="index.php?c=produto&a=index" class="list-group-item list-group-item-action">
+                📦 Produtos
+            </a>
+            <a href="index.php?c=pedido&a=carrinho" class="list-group-item list-group-item-action">
+                🛒 Carrinho
+            </a>
+            <a href="index.php?c=cupom&a=index" class="list-group-item list-group-item-action">
+                🏷️ Cupons
+            </a>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container my-5">
+        <h2 class="text-center mb-4 text-secondary">Mini ERP - Controle de Produtos e Pedidos</h2>
+
+        <!-- Formulário de Cadastro -->
+        <section class="card p-4">
+            <h3 class="h4 mb-4">Cadastro de Produto</h3>
+            <form id="formProduto">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="nomeProduto" class="form-label">Nome do Produto</label>
+                        <input type="text" class="form-control" id="nomeProduto" 
+                               placeholder="Ex: Camiseta Estampada" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="precoProduto" class="form-label">Preço (R$)</label>
+                        <input type="number" step="0.01" class="form-control" id="precoProduto" 
+                               placeholder="Ex: 89.90" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="estoqueProduto" class="form-label">Estoque</label>
+                        <input type="number" class="form-control" id="estoqueProduto" 
+                               placeholder="Ex: 50" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="variacaoProduto" class="form-label">Variações</label>
+                        <input type="text" class="form-control" id="variacaoProduto" 
+                               placeholder="Ex: P, M, G, GG">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-success" id="btnSalvar">
+                        Salvar Produto
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Lista de Produtos -->
+        <section class="mt-5">
+            <h3 class="h4 text-secondary mb-3">Produtos Cadastrados</h3>
+            <div class="table-responsive">
+                <table class="products-table table table-striped mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Estoque</th>
+                            <th scope="col">Variações</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaProdutos">
+                        <!-- Exemplos estáticos (serão substituídos pelo JS quando ativo) -->
+                        <tr>
+                            <td data-label="#">1</td>
+                            <td data-label="Nome">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://via.placeholder.com/56" class="product-img me-3" alt="">
+                                    <div>
+                                        <div>Camiseta Estampada</div>
+                                        <div class="text-muted small">SKU-001</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Preço" class="price-cell">R$ 89,90</td>
+                            <td data-label="Estoque" class="stock-ok">35</td>
+                            <td data-label="Variações">P, M, G</td>
+                            <td data-label="Ações" class="action-buttons">
+                                <button class="btn btn-sm btn-outline-primary">Editar</button>
+                                <button class="btn btn-sm btn-outline-danger">Remover</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="#">2</td>
+                            <td data-label="Nome">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://via.placeholder.com/56" class="product-img me-3" alt="">
+                                    <div>
+                                        <div>Caneca Personalizada</div>
+                                        <div class="text-muted small">SKU-002</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Preço" class="price-cell">R$ 29,90</td>
+                            <td data-label="Estoque" class="stock-low">3</td>
+                            <td data-label="Variações">Único</td>
+                            <td data-label="Ações" class="action-buttons">
+                                <button class="btn btn-sm btn-outline-primary">Editar</button>
+                                <button class="btn btn-sm btn-outline-danger">Remover</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="#">3</td>
+                            <td data-label="Nome">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://via.placeholder.com/56" class="product-img me-3" alt="">
+                                    <div>
+                                        <div>Boné Trucker</div>
+                                        <div class="text-muted small">SKU-003</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Preço" class="price-cell">R$ 59,90</td>
+                            <td data-label="Estoque" class="stock-ok">12</td>
+                            <td data-label="Variações">Único</td>
+                            <td data-label="Ações" class="action-buttons">
+                                <button class="btn btn-sm btn-outline-primary">Editar</button>
+                                <button class="btn btn-sm btn-outline-danger">Remover</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Carrinho de Compras -->
+        <section class="mt-5 card p-4 bg-light">
+            <h3 class="h5 mb-4">Carrinho de Compras</h3>
+            <div class="cart-items">
+                <ul id="listaCarrinho" class="list-group mt-3">
+                    <!-- Items do carrinho serão inseridos aqui via JavaScript -->
+                </ul>
+            </div>
+
+            <!-- Formulário de Entrega -->
+            <div class="shipping-form mt-4">
+                <label for="cepCliente" class="form-label">CEP do Cliente</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="cepCliente" 
+                           placeholder="Digite o CEP" maxlength="9" 
+                           aria-describedby="btnBuscarCep">
+                    <button class="btn btn-outline-secondary" type="button" 
+                            id="btnBuscarCep">Buscar Endereço</button>
+                </div>
+                <p id="enderecoCliente" class="mt-2 text-muted"></p>
+            </div>
+
+            <!-- Cupom de Desconto -->
+            <div class="discount-form mt-4">
+                <label for="cupom" class="form-label">Cupom de Desconto</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="cupom" 
+                           placeholder="Ex: DESCONTO10" 
+                           aria-describedby="btnCupom">
+                    <button class="btn btn-outline-success" type="button" 
+                            id="btnCupom">Aplicar Cupom</button>
+                </div>
+                <div class="mt-2">
+                    <span id="cupomAtivo" class="badge-cupom d-none">
+                        Cupom aplicado!
+                    </span>
+                </div>
+            </div>
+
+            <!-- Resumo do Pedido -->
+            <div class="order-summary mt-4">
+                <h4 class="h6 mb-3">Resumo do Pedido</h4>
+                <div class="order-details">
+                    <p class="d-flex justify-content-between">
+                        <span>Subtotal:</span>
+                        <span>R$ <span id="subtotal">0,00</span></span>
+                    </p>
+                    <p class="d-flex justify-content-between">
+                        <span>Frete:</span>
+                        <span>R$ <span id="frete">0,00</span></span>
+                    </p>
+                    <p class="d-flex justify-content-between">
+                        <span>Desconto:</span>
+                        <span>R$ <span id="desconto">0,00</span></span>
+                    </p>
+                    <h5 class="d-flex justify-content-between mt-3">
+                        <span>Total:</span>
+                        <span>R$ <span id="total">0,00</span></span>
+                    </h5>
+                </div>
+
+                <button class="btn btn-primary w-100 mt-3" id="btnFinalizar">
+                    Finalizar Pedido
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">MiniERP</h2>
+        <nav>
+            <ul>
+                <li class="active">Dashboard</li>
+                <li>Produtos</li>
+                <li>Pedidos</li>
+                <li>Clientes</li>
+                <li>Cupons</li>
+                <li>Usuários</li>
+                <li>Sair</li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+        <!-- Topbar -->
+        <header class="topbar">
+            <h1>Dashboard</h1>
+            <div class="user">
+                <span>Admin</span>
+            </div>
+        </header>
+
+        <!-- Cards métricas -->
+        <section class="cards">
+
+            <div class="card">
+                <h3>Vendas Hoje</h3>
+                <p>R$ 1.250,00</p>
+            </div>
+
+            <div class="card">
+                <h3>Total de Pedidos</h3>
+                <p>48</p>
+            </div>
+
+            <div class="card">
+                <h3>Clientes</h3>
+                <p>120</p>
+            </div>
+
+            <div class="card">
+                <h3>Produtos</h3>
+                <p>35</p>
+            </div>
+
+        </section>
+
+        <!-- Tabela pedidos -->
+        <section class="table-section">
+
+            <h2>Últimos Pedidos</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Maria Silva</td>
+                        <td>R$ 150,00</td>
+                        <td><span class="status pago">Pago</span></td>
+                        <td>20/02/2026</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>João Souza</td>
+                        <td>R$ 320,00</td>
+                        <td><span class="status pendente">Pendente</span></td>
+                        <td>20/02/2026</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+    <!-- Footer -->
+    <footer class="container">
+        <div class="text-center py-3">
+            Mini ERP PHP - Desafio Montink © 2025
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="bootstrap.bundle.min.js"></script>
+    <!-- App JS -->
+    <script src="app.js"></script>
+</body>
+</html>

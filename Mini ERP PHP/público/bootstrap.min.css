@@ -1,0 +1,32 @@
+ body {
+            background-color: #f4efef;
+            color: #f1f1f1;
+            padding-top: 70px;
+        }
+        .navbar-dark {
+            background-color: #fdf9f9;
+        }
+        .card {
+            background-color:  #f9f1f1;
+            color: #f1f1f1;
+        }
+        .form-control {
+            background-color: #2a2a2a;
+            color: #f1f1f1;
+            border: 1px solid #faf4fa;
+        }
+        .form-control:focus {
+            background-color: #faf7f7;
+            color: #fff;
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        .table {
+            color: #f1f1f1;
+        }
+        .table thead {
+            background-color: #f9f5f5;
+        }
+        .table tbody tr:nth-child(even) {
+            background-color: #fcf8f8;
+        }
