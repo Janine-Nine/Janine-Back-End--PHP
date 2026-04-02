@@ -8,6 +8,17 @@ Projeto criado com foco em organização de código, boas práticas de desenvolv
 
 # 📦 Funcionalidades:
 
+Cadastro de produtos
+Listagem de produtos
+Controle de estoque
+Carrinho de compras
+Aplicação de cupons
+Cálculo de frete por CEP
+Finalização de pedidos
+Dashboard administrativo
+Resumo de vendas
+Pedidos recentes
+
 # 🛍️ Gestão de Produtos
 
 Cadastro de produtos
@@ -16,7 +27,10 @@ Edição e remoção
 Controle de estoque
 Variações (tamanho, modelo, etc.)
 SKU e imagem do produto
-🛒 Carrinho de Compras
+
+---
+
+# 🛒 Carrinho de Compras
 Adição de produtos ao carrinho
 Cálculo automático de subtotal
 Atualização dinâmica
@@ -89,18 +103,20 @@ Mini-ERP-PHP
 
 # 🚀 Tecnologias Utilizadas
 
-Backend
+🖥️ Backend
 PHP 8+
 PDO
 MySQL
 Arquitetura MVC
 Sessões PHP
-Frontend
+
+🎨 Frontend
 HTML5
 CSS3
 Bootstrap
 JavaScript
-Integrações
+
+🔗 Integrações
 API de CEP
 Sistema de Cupons
 Dashboard administrativo
