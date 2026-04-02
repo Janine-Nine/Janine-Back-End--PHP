@@ -1,0 +1,48 @@
+body {
+    background-color: #f4f5fb;
+    color: #212529;
+    padding-top: 0;
+}
+.navbar-dark {
+    background-color: transparent;
+}
+.card {
+    background-color: #ffffff;
+    color: #212529;
+}
+.form-control {
+    background-color: #ffffff;
+    color: #212529;
+    border: 1px solid #ced4da;
+}
+.form-control:focus {
+    background-color: #ffffff;
+    color: #212529;
+    border-color: #5e35b1;
+    box-shadow: 0 0 0 0.2rem rgba(94, 53, 177, 0.25);
+}
+.table {
+    color: #212529;
+}
+.table thead {
+    background-color: #f8f9fb;
+}
+.table tbody tr:nth-child(even) {
+    background-color: #f7f8fc;
+}
+.table-dark thead th {
+    color: #212529 !important;
+    background-color: #f8f9fb !important;
+}
+.btn-outline-primary {
+    border-color: #5e35b1;
+    color: #5e35b1;
+}
+.btn-outline-primary:hover {
+    background-color: #5e35b1;
+    color: #fff;
+}
+.btn-outline-success:hover {
+    background-color: #198754;
+    color: #fff;
+}
